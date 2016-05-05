@@ -168,13 +168,17 @@ namespace YCMap
 
         private void menuItemAddData_Click(object sender, EventArgs e)
         {
-
+            ICommand cmd =new ControlsAddDataCommandClass();
+            cmd.OnCreate(axMapControl1.Object);
+            cmd.OnClick();
         }
 
         private void menuItemExit_Click(object sender, EventArgs e)
         {
+            //TODO:check whether to save documents
 
+            this.Close();
+            Application.Exit();
         }
-
     }
 }
