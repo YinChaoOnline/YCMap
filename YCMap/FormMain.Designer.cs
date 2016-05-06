@@ -49,11 +49,11 @@
             this.axTOCControl1 = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControlLayerAndProperty = new System.Windows.Forms.TabControl();
             this.tabPageLayers = new System.Windows.Forms.TabPage();
             this.tabPageProperties = new System.Windows.Forms.TabPage();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabControlMapAndPageLayout = new System.Windows.Forms.TabControl();
             this.tabPageMap = new System.Windows.Forms.TabPage();
             this.tabPagePagelayout = new System.Windows.Forms.TabPage();
             this.axPageLayoutControl1 = new ESRI.ArcGIS.Controls.AxPageLayoutControl();
@@ -66,10 +66,10 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControlLayerAndProperty.SuspendLayout();
             this.tabPageLayers.SuspendLayout();
             this.tabPageProperties.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.tabControlMapAndPageLayout.SuspendLayout();
             this.tabPageMap.SuspendLayout();
             this.tabPagePagelayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axPageLayoutControl1)).BeginInit();
@@ -241,25 +241,25 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
+            this.splitContainer1.Panel1.Controls.Add(this.tabControlLayerAndProperty);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabControl2);
+            this.splitContainer1.Panel2.Controls.Add(this.tabControlMapAndPageLayout);
             this.splitContainer1.Size = new System.Drawing.Size(886, 359);
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 7;
             // 
-            // tabControl1
+            // tabControlLayerAndProperty
             // 
-            this.tabControl1.Controls.Add(this.tabPageLayers);
-            this.tabControl1.Controls.Add(this.tabPageProperties);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(294, 359);
-            this.tabControl1.TabIndex = 0;
+            this.tabControlLayerAndProperty.Controls.Add(this.tabPageLayers);
+            this.tabControlLayerAndProperty.Controls.Add(this.tabPageProperties);
+            this.tabControlLayerAndProperty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlLayerAndProperty.Location = new System.Drawing.Point(0, 0);
+            this.tabControlLayerAndProperty.Name = "tabControlLayerAndProperty";
+            this.tabControlLayerAndProperty.SelectedIndex = 0;
+            this.tabControlLayerAndProperty.Size = new System.Drawing.Size(294, 359);
+            this.tabControlLayerAndProperty.TabIndex = 0;
             // 
             // tabPageLayers
             // 
@@ -293,16 +293,17 @@
             this.propertyGrid1.Size = new System.Drawing.Size(280, 327);
             this.propertyGrid1.TabIndex = 0;
             // 
-            // tabControl2
+            // tabControlMapAndPageLayout
             // 
-            this.tabControl2.Controls.Add(this.tabPageMap);
-            this.tabControl2.Controls.Add(this.tabPagePagelayout);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(0, 0);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(588, 359);
-            this.tabControl2.TabIndex = 0;
+            this.tabControlMapAndPageLayout.Controls.Add(this.tabPageMap);
+            this.tabControlMapAndPageLayout.Controls.Add(this.tabPagePagelayout);
+            this.tabControlMapAndPageLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMapAndPageLayout.Location = new System.Drawing.Point(0, 0);
+            this.tabControlMapAndPageLayout.Name = "tabControlMapAndPageLayout";
+            this.tabControlMapAndPageLayout.SelectedIndex = 0;
+            this.tabControlMapAndPageLayout.Size = new System.Drawing.Size(588, 359);
+            this.tabControlMapAndPageLayout.TabIndex = 0;
+            this.tabControlMapAndPageLayout.SelectedIndexChanged += new System.EventHandler(this.tabControlMapAndPageLayout_SelectedIndexChanged);
             // 
             // tabPageMap
             // 
@@ -322,7 +323,7 @@
             this.tabPagePagelayout.Location = new System.Drawing.Point(4, 22);
             this.tabPagePagelayout.Name = "tabPagePagelayout";
             this.tabPagePagelayout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePagelayout.Size = new System.Drawing.Size(523, 341);
+            this.tabPagePagelayout.Size = new System.Drawing.Size(580, 333);
             this.tabPagePagelayout.TabIndex = 1;
             this.tabPagePagelayout.Text = "布局";
             this.tabPagePagelayout.ToolTipText = "布局";
@@ -334,7 +335,7 @@
             this.axPageLayoutControl1.Location = new System.Drawing.Point(3, 3);
             this.axPageLayoutControl1.Name = "axPageLayoutControl1";
             this.axPageLayoutControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axPageLayoutControl1.OcxState")));
-            this.axPageLayoutControl1.Size = new System.Drawing.Size(517, 335);
+            this.axPageLayoutControl1.Size = new System.Drawing.Size(574, 327);
             this.axPageLayoutControl1.TabIndex = 0;
             // 
             // statusStrip1
@@ -345,7 +346,7 @@
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // FrmMain
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -357,8 +358,10 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FrmMain";
+            this.Name = "FormMain";
             this.Text = "YCMap";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).EndInit();
@@ -368,10 +371,10 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControlLayerAndProperty.ResumeLayout(false);
             this.tabPageLayers.ResumeLayout(false);
             this.tabPageProperties.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
+            this.tabControlMapAndPageLayout.ResumeLayout(false);
             this.tabPageMap.ResumeLayout(false);
             this.tabPagePagelayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axPageLayoutControl1)).EndInit();
@@ -396,10 +399,10 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemManageBookmarks;
         private System.Windows.Forms.ToolStripMenuItem menuItemSaveAs;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlLayerAndProperty;
         private System.Windows.Forms.TabPage tabPageLayers;
         private System.Windows.Forms.TabPage tabPageProperties;
-        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabControl tabControlMapAndPageLayout;
         private System.Windows.Forms.TabPage tabPageMap;
         private System.Windows.Forms.TabPage tabPagePagelayout;
         private ESRI.ArcGIS.Controls.AxPageLayoutControl axPageLayoutControl1;
