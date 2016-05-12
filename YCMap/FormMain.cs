@@ -281,5 +281,43 @@ namespace YCMap
             }
         }
 
+        private void axToolbarControl1_OnMouseMove(object sender, IToolbarControlEvents_OnMouseMoveEvent e)
+        {
+            // 取得鼠标所在工具的索引号
+            int index = axToolbarControl1.HitTest(e.x, e.y, false);
+            if (index != -1)
+            {
+                // 取得鼠标所在工具的 ToolbarItem
+                IToolbarItem toolbarItem = axToolbarControl1.GetItem(index);
+                // 设置状态栏信息
+                toolStripStatusMessage.Text = toolbarItem.Command.Message;
+            }
+            else
+            {
+                toolStripStatusMessage.Text = " 就绪 ";
+            }
+        }
+
+        private void axMapControl1_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
+        {
+            // 显示当前比例尺,整数
+            toolStripStatusScale.Text = " 比例尺 1:" + axMapControl1.MapScale.ToString("f0");
+
+            // 显示当前坐标，保留小数点后四位
+            toolStripStatusCoordinates.Text = String.Format(" 当前坐标 X = {0}, Y={1} {2}",
+                                                                                                e.mapX.ToString("f4"),
+                                                                                                e.mapY.ToString("f4"),
+                                                                                                ConvertEsriUnit(axMapControl1.MapUnits));
+        }
+
+        public String ConvertEsriUnit(esriUnits units)
+        {
+            String zhUnits = "unknown";
+            if (units.ToString().Contains("esri"))
+            {
+                zhUnits = units.ToString().Substring(4);
+            }
+            return zhUnits;
+        }
     }
 }

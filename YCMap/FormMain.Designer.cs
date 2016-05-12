@@ -58,6 +58,10 @@
             this.tabPagePagelayout = new System.Windows.Forms.TabPage();
             this.axPageLayoutControl1 = new ESRI.ArcGIS.Controls.AxPageLayoutControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusBlank = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusCoordinates = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusScale = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -73,6 +77,7 @@
             this.tabPageMap.SuspendLayout();
             this.tabPagePagelayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axPageLayoutControl1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -200,6 +205,7 @@
             this.axToolbarControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axToolbarControl1.OcxState")));
             this.axToolbarControl1.Size = new System.Drawing.Size(886, 28);
             this.axToolbarControl1.TabIndex = 1;
+            this.axToolbarControl1.OnMouseMove += new ESRI.ArcGIS.Controls.IToolbarControlEvents_Ax_OnMouseMoveEventHandler(this.axToolbarControl1_OnMouseMove);
             // 
             // axLicenseControl1
             // 
@@ -218,6 +224,7 @@
             this.axMapControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMapControl1.OcxState")));
             this.axMapControl1.Size = new System.Drawing.Size(574, 327);
             this.axMapControl1.TabIndex = 5;
+            this.axMapControl1.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.axMapControl1_OnMouseMove);
             this.axMapControl1.OnMapReplaced += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMapReplacedEventHandler(this.axMapControl1_OnMapReplaced);
             // 
             // axTOCControl1
@@ -340,11 +347,40 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusMessage,
+            this.toolStripStatusBlank,
+            this.toolStripStatusScale,
+            this.toolStripStatusCoordinates});
             this.statusStrip1.Location = new System.Drawing.Point(0, 412);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(886, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusMessage
+            // 
+            this.toolStripStatusMessage.Name = "toolStripStatusMessage";
+            this.toolStripStatusMessage.Size = new System.Drawing.Size(32, 17);
+            this.toolStripStatusMessage.Text = "就绪";
+            // 
+            // toolStripStatusBlank
+            // 
+            this.toolStripStatusBlank.Name = "toolStripStatusBlank";
+            this.toolStripStatusBlank.Size = new System.Drawing.Size(715, 17);
+            this.toolStripStatusBlank.Spring = true;
+            // 
+            // toolStripStatusCoordinates
+            // 
+            this.toolStripStatusCoordinates.Name = "toolStripStatusCoordinates";
+            this.toolStripStatusCoordinates.Size = new System.Drawing.Size(68, 17);
+            this.toolStripStatusCoordinates.Text = "当前比例尺";
+            // 
+            // toolStripStatusScale
+            // 
+            this.toolStripStatusScale.Name = "toolStripStatusScale";
+            this.toolStripStatusScale.Size = new System.Drawing.Size(56, 17);
+            this.toolStripStatusScale.Text = "当前坐标";
             // 
             // FormMain
             // 
@@ -378,6 +414,8 @@
             this.tabPageMap.ResumeLayout(false);
             this.tabPagePagelayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axPageLayoutControl1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,6 +452,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusMessage;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusBlank;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusCoordinates;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusScale;
     }
 }
 
