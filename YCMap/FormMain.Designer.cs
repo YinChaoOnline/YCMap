@@ -60,8 +60,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusBlank = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusCoordinates = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusScale = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusCoordinates = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOverview = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -84,7 +86,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuFile,
-            this.menuBookmarks});
+            this.menuBookmarks,
+            this.menuWindow});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(886, 25);
@@ -370,17 +373,32 @@
             this.toolStripStatusBlank.Size = new System.Drawing.Size(715, 17);
             this.toolStripStatusBlank.Spring = true;
             // 
+            // toolStripStatusScale
+            // 
+            this.toolStripStatusScale.Name = "toolStripStatusScale";
+            this.toolStripStatusScale.Size = new System.Drawing.Size(56, 17);
+            this.toolStripStatusScale.Text = "当前坐标";
+            // 
             // toolStripStatusCoordinates
             // 
             this.toolStripStatusCoordinates.Name = "toolStripStatusCoordinates";
             this.toolStripStatusCoordinates.Size = new System.Drawing.Size(68, 17);
             this.toolStripStatusCoordinates.Text = "当前比例尺";
             // 
-            // toolStripStatusScale
+            // menuWindow
             // 
-            this.toolStripStatusScale.Name = "toolStripStatusScale";
-            this.toolStripStatusScale.Size = new System.Drawing.Size(56, 17);
-            this.toolStripStatusScale.Text = "当前坐标";
+            this.menuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemOverview});
+            this.menuWindow.Name = "menuWindow";
+            this.menuWindow.Size = new System.Drawing.Size(64, 21);
+            this.menuWindow.Text = "窗口(&W)";
+            // 
+            // menuItemOverview
+            // 
+            this.menuItemOverview.Name = "menuItemOverview";
+            this.menuItemOverview.Size = new System.Drawing.Size(152, 22);
+            this.menuItemOverview.Text = "总览(&O)";
+            this.menuItemOverview.Click += new System.EventHandler(this.menuItemOverview_Click);
             // 
             // FormMain
             // 
@@ -456,6 +474,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusBlank;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusCoordinates;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusScale;
+        private System.Windows.Forms.ToolStripMenuItem menuWindow;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOverview;
     }
 }
 

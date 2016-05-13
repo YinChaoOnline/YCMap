@@ -319,5 +319,11 @@ namespace YCMap
             }
             return zhUnits;
         }
+
+        private void menuItemOverview_Click(object sender, EventArgs e)
+        {
+            FormOverview frmOverview = new FormOverview();
+            frmOverview.Show();
+        }
     }
 }
