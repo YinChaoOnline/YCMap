@@ -322,8 +322,16 @@ namespace YCMap
 
         private void menuItemOverview_Click(object sender, EventArgs e)
         {
-            FormOverview frmOverview = new FormOverview();
-            frmOverview.Show();
+            try
+            {
+                FormOverview frmOverview = new FormOverview(axMapControl1);
+                //frmOverview.Parent = this;
+                frmOverview.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -65,9 +65,9 @@
             this.MinimizeBox = false;
             this.Name = "FormOverview";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "总览";
-            this.TopMost = true;
+            this.Load += new System.EventHandler(this.FormOverview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axMapControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             this.ResumeLayout(false);

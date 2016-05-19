@@ -43,6 +43,8 @@
             this.menuBookmarks = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCreateBookmark = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemManageBookmarks = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemOverview = new System.Windows.Forms.ToolStripMenuItem();
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
             this.axMapControl1 = new ESRI.ArcGIS.Controls.AxMapControl();
@@ -62,8 +64,6 @@
             this.toolStripStatusBlank = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusScale = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusCoordinates = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemOverview = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -199,6 +199,21 @@
             this.menuItemManageBookmarks.Size = new System.Drawing.Size(153, 22);
             this.menuItemManageBookmarks.Text = "管理书签(&M)...";
             this.menuItemManageBookmarks.Click += new System.EventHandler(this.menuItemManageBookmarks_Click);
+            // 
+            // menuWindow
+            // 
+            this.menuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemOverview});
+            this.menuWindow.Name = "menuWindow";
+            this.menuWindow.Size = new System.Drawing.Size(64, 21);
+            this.menuWindow.Text = "窗口(&W)";
+            // 
+            // menuItemOverview
+            // 
+            this.menuItemOverview.Name = "menuItemOverview";
+            this.menuItemOverview.Size = new System.Drawing.Size(152, 22);
+            this.menuItemOverview.Text = "总览(&O)";
+            this.menuItemOverview.Click += new System.EventHandler(this.menuItemOverview_Click);
             // 
             // axToolbarControl1
             // 
@@ -384,21 +399,6 @@
             this.toolStripStatusCoordinates.Name = "toolStripStatusCoordinates";
             this.toolStripStatusCoordinates.Size = new System.Drawing.Size(68, 17);
             this.toolStripStatusCoordinates.Text = "当前比例尺";
-            // 
-            // menuWindow
-            // 
-            this.menuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemOverview});
-            this.menuWindow.Name = "menuWindow";
-            this.menuWindow.Size = new System.Drawing.Size(64, 21);
-            this.menuWindow.Text = "窗口(&W)";
-            // 
-            // menuItemOverview
-            // 
-            this.menuItemOverview.Name = "menuItemOverview";
-            this.menuItemOverview.Size = new System.Drawing.Size(152, 22);
-            this.menuItemOverview.Text = "总览(&O)";
-            this.menuItemOverview.Click += new System.EventHandler(this.menuItemOverview_Click);
             // 
             // FormMain
             // 
