@@ -11,6 +11,9 @@ using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.esriSystem;
 using YCMap.Forms;
 using YCMap.Commands;
+using ESRI.ArcGIS.Geometry;
+using ESRI.ArcGIS.Display;
+using YCMap.Utils;
 
 namespace YCMap
 {
@@ -174,6 +177,7 @@ namespace YCMap
         }
 
         //地图被替换时，加载地图文档的书签集合
+        //释放总览窗体，并关闭
         private void axMapControl1_OnMapReplaced(object sender, IMapControlEvents2_OnMapReplacedEvent e)
         {
             /*
@@ -222,6 +226,18 @@ namespace YCMap
                 menuBookmarks.DropDownItems.Add(tempMenu);
 
                 currentBookmark = bookmarks.Next();
+            }
+
+            //释放总览窗体并关闭
+            CloseOverviewForm();
+        }
+
+        private void CloseOverviewForm()
+        {
+            if (m_FormOverview != null)
+            {
+                m_FormOverview.DialogResult = DialogResult.OK;
+                m_FormOverview.Close();
             }
         }
 
@@ -320,17 +336,32 @@ namespace YCMap
             return zhUnits;
         }
 
+        private FormOverview m_FormOverview = null;
         private void menuItemOverview_Click(object sender, EventArgs e)
         {
             try
             {
-                FormOverview frmOverview = new FormOverview(axMapControl1);
-                //frmOverview.Parent = this;
-                frmOverview.Show();
+                if (m_FormOverview == null || m_FormOverview.IsDisposed)
+                {
+                    m_FormOverview = new FormOverview(axMapControl1);
+                }
+                m_FormOverview.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void axMapControl1_OnExtentUpdated(object sender, IMapControlEvents2_OnExtentUpdatedEvent e)
+        {
+            //创建矩形元素
+            IFillShapeElement fillShapeElement = ElementsHelper.GetRectangleElement(e.newEnvelope as IGeometry);
+
+            //刷新总览窗体的mapcontrol
+            if (m_FormOverview != null && !m_FormOverview.IsDisposed)
+            {
+                m_FormOverview.UpdateMapControlGraphics(fillShapeElement as IElement);
             }
         }
     }

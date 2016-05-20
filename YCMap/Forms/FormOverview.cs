@@ -1,5 +1,6 @@
 ﻿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
+using ESRI.ArcGIS.Geometry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using YCMap.Utils;
 
 namespace YCMap.Forms
 {
@@ -50,7 +52,78 @@ namespace YCMap.Forms
                 axMapControl1.Extent = m_mapControl.ActiveView.FullExtent;
                 // 刷新鹰眼控件地图
                 axMapControl1.Refresh();
+
+                //创建矩形元素
+                IFillShapeElement fillShapeElement = ElementsHelper.GetRectangleElement(m_mapControl.Extent);
+                UpdateMapControlGraphics(fillShapeElement as IElement);
             }
+        }
+
+        public Boolean UpdateMapControlGraphics(IElement element)
+        {
+            try
+            {
+                IGraphicsContainer graphicsContainer = axMapControl1.Map as IGraphicsContainer;
+                // 在绘制前，清除 axMapControl2 中的任何图形元素
+                graphicsContainer.DeleteAllElements();
+                graphicsContainer.AddElement(element, 0);
+
+                // 刷新
+                IActiveView activeView = graphicsContainer as IActiveView;
+                activeView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        private void FormOverview_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (e.CloseReason == CloseReason.UserClosing && this.DialogResult != DialogResult.OK)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+        }
+
+        private void axMapControl1_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {
+            IEnvelope envelope = null;
+            if (axMapControl1.Map.LayerCount != 0 && m_mapControl != null)
+            {
+                // 按下鼠标左键移动矩形框
+                if (e.button == 1)
+                {
+                    IPoint pPoint = new PointClass();
+                    pPoint.PutCoords(e.mapX, e.mapY);
+                    envelope = m_mapControl.Extent;
+                    envelope.CenterAt(pPoint);
+                }
+                // 按下鼠标右键绘制矩形框
+                else if (e.button == 2)
+                {
+                    envelope = this.axMapControl1.TrackRectangle();
+                }
+                m_mapControl.Extent = envelope;
+                m_mapControl.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeography, null, null);
+            }
+        }
+
+        //按下鼠标左键的时候移动矩形框，同时也改变主的图控件的显示范围
+        private void axMapControl2_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
+        {
+            // 如果不是左键按下就直接返回
+            if (e.button != 1) return;
+            IPoint pPoint = new PointClass();
+            pPoint.PutCoords(e.mapX, e.mapY);
+            this.m_mapControl.CenterAt(pPoint);
+            this.m_mapControl.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeography, null, null);
         }
     }
 }
+
