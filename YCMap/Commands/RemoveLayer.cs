@@ -13,7 +13,17 @@ namespace YCMap.Commands
         private IMapControlDefault m_mapControl;
         public RemoveLayer()
         {
-            base.m_caption = "移除图层";
+            base.m_caption = "移除";
+            base.m_toolTip = "移除当前图层";
+            base.m_message = "移除当前图层";
+            try
+            {
+                base.m_bitmap = YCMap.Properties.Resources.RemoveLayer;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex.Message, "Invalid Bitmap");
+            }
         }
 
         public override void OnCreate(object hook)
