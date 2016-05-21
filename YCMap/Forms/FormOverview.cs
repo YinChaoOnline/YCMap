@@ -111,6 +111,8 @@ namespace YCMap.Forms
                 }
                 m_mapControl.Extent = envelope;
                 m_mapControl.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeography, null, null);
+
+                axMapControl1.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeography, null, null);
             }
         }
 
@@ -121,8 +123,10 @@ namespace YCMap.Forms
             if (e.button != 1) return;
             IPoint pPoint = new PointClass();
             pPoint.PutCoords(e.mapX, e.mapY);
+
             this.m_mapControl.CenterAt(pPoint);
             this.m_mapControl.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeography, null, null);
+            axMapControl1.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeography, null, null);
         }
     }
 }

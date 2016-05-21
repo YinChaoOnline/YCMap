@@ -22,6 +22,12 @@ namespace YCMap
         private IMapControlDefault m_mapControl = null;
         private IPageLayoutControlDefault m_pageLayoutControl = null;
         private ControlsSynchronizer m_controlsSynchronizer = null;
+        private ITOCControlDefault m_tocControl = null;
+        //TOCControl 中 Map 菜单
+        private IToolbarMenu m_menuMap = new ToolbarMenuClass();
+        //TOCControl 中图层菜单
+        private IToolbarMenu m_menuLayer = new ToolbarMenuClass();
+        private FormOverview m_FormOverview = null;
 
         public FormMain()
         {
@@ -32,6 +38,7 @@ namespace YCMap
                 //初始化IMapControlDefault与IPageLayoutControlDefault接口变量
                 m_mapControl = axMapControl1.Object as IMapControlDefault;
                 m_pageLayoutControl = axPageLayoutControl1.Object as IPageLayoutControlDefault;
+                m_tocControl = axTOCControl1.Object as ITOCControlDefault;
             }
             catch (Exception ex)
             {
@@ -51,6 +58,21 @@ namespace YCMap
             // 添加打开命令按钮到工具条
             //OpenNewMapDocument openMapDoc = new OpenNewMapDocument(m_controlsSynchronizer);
             //axToolbarControl1.AddItem(openMapDoc, -1, 0, false, -1, esriCommandStyles.esriCommandStyleIconOnly);
+            //添加自定义菜单项到 TOCCOntrol 的 Map 菜单中
+
+            m_menuMap.AddItem(new OpenNewMapDocument(m_controlsSynchronizer), -1,0, false, esriCommandStyles.esriCommandStyleIconAndText);
+            //打开全部图层菜单
+            m_menuMap.AddItem(new LayerVisibility(), 1,-1, true, esriCommandStyles.esriCommandStyleTextOnly);
+            //关闭全部图层菜单
+            m_menuMap.AddItem(new LayerVisibility(), 2, -1, false, esriCommandStyles.esriCommandStyleTextOnly);
+            m_menuMap.SetHook(m_mapControl);
+
+            //添加“移除图层”菜单项
+            m_menuLayer.AddItem(new RemoveLayer(), -1, 0, false, esriCommandStyles.esriCommandStyleTextOnly);
+            //添加“放大到整个图层”菜单项
+            m_menuLayer.AddItem(new ZoomToLayer(), -1, 1, true, esriCommandStyles.esriCommandStyleTextOnly);
+            //设置菜单的 Hook
+            m_menuLayer.SetHook(m_mapControl);
         }
 
         #region 文件菜单
@@ -160,6 +182,21 @@ namespace YCMap
             }
         }
 
+        private void menuItemOverview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_FormOverview == null || m_FormOverview.IsDisposed)
+                {
+                    m_FormOverview = new FormOverview(axMapControl1);
+                }
+                m_FormOverview.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         #endregion
 
         #region Bookmarks
@@ -283,18 +320,34 @@ namespace YCMap
 
         #endregion
 
-        private void tabControlMapAndPageLayout_SelectedIndexChanged(object sender, EventArgs e)
+        #region MyRegion
+
+        private void axTOCControl1_OnMouseDown(object sender, ITOCControlEvents_OnMouseDownEvent e)
         {
-            if (tabControlMapAndPageLayout.SelectedIndex == 0) //map view
-            {
-                //activate the MapControl and deactivate the PageLayoutControl
-                m_controlsSynchronizer.ActivateMap();
-            }
-            else //layout view
-            {
-                //activate the PageLayoutControl and deactivate the MapControl
-                m_controlsSynchronizer.ActivatePageLayout();
-            }
+            //如果不是右键按下直接返回
+            if (e.button != 2) return;
+
+            esriTOCControlItem itemType = esriTOCControlItem.esriTOCControlItemNone;
+            IBasicMap basicMap = null;
+            ILayer layer = null;
+            object other = null;
+            object data = null;
+
+            //判断所选菜单的类型
+            m_tocControl.HitTest(e.x, e.y, ref itemType, ref basicMap, ref layer, ref other, ref data);
+
+            //确定选定的菜单类型， Map 或是图层菜单
+            if (itemType == esriTOCControlItem.esriTOCControlItemMap)
+                m_tocControl.SelectItem(basicMap, null);
+            else
+                m_tocControl.SelectItem(layer, null);
+            //设置 CustomProperty 为 layer ( 用于自定义的 Layer 命令)
+            m_mapControl.CustomProperty = layer;
+            //弹出右键菜单
+            if (itemType == esriTOCControlItem.esriTOCControlItemMap)
+                m_menuMap.PopupMenu(e.x, e.y, m_tocControl.hWnd);
+            if (itemType == esriTOCControlItem.esriTOCControlItemLayer)
+                m_menuLayer.PopupMenu(e.x, e.y, m_tocControl.hWnd);
         }
 
         private void axToolbarControl1_OnMouseMove(object sender, IToolbarControlEvents_OnMouseMoveEvent e)
@@ -314,6 +367,15 @@ namespace YCMap
             }
         }
 
+        private void axMapControl1_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {
+            if (e.button == 2)
+            {
+                //弹出右键菜单
+                m_menuMap.PopupMenu(e.x, e.y, m_mapControl.hWnd);
+            }
+        }
+
         private void axMapControl1_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
         {
             // 显示当前比例尺,整数
@@ -323,34 +385,7 @@ namespace YCMap
             toolStripStatusCoordinates.Text = String.Format(" 当前坐标 X = {0}, Y={1} {2}",
                                                                                                 e.mapX.ToString("f4"),
                                                                                                 e.mapY.ToString("f4"),
-                                                                                                ConvertEsriUnit(axMapControl1.MapUnits));
-        }
-
-        public String ConvertEsriUnit(esriUnits units)
-        {
-            String zhUnits = "unknown";
-            if (units.ToString().Contains("esri"))
-            {
-                zhUnits = units.ToString().Substring(4);
-            }
-            return zhUnits;
-        }
-
-        private FormOverview m_FormOverview = null;
-        private void menuItemOverview_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (m_FormOverview == null || m_FormOverview.IsDisposed)
-                {
-                    m_FormOverview = new FormOverview(axMapControl1);
-                }
-                m_FormOverview.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                                                                                                YCMap.Utils.SystemHelper.ConvertEsriUnit(axMapControl1.MapUnits));
         }
 
         private void axMapControl1_OnExtentUpdated(object sender, IMapControlEvents2_OnExtentUpdatedEvent e)
@@ -364,5 +399,53 @@ namespace YCMap
                 m_FormOverview.UpdateMapControlGraphics(fillShapeElement as IElement);
             }
         }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                //隐藏总览窗体
+                if (m_FormOverview != null && !m_FormOverview.IsDisposed)
+                {
+                    m_FormOverview.Hide();
+                }
+            }
+            else
+            {
+                m_FormOverview.Show();
+            }
+        }
+
+        private void FormMain_Deactivate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormMain_Activated(object sender, EventArgs e)
+        {
+
+        }
+        private void FormMain_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControlMapAndPageLayout_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlMapAndPageLayout.SelectedIndex == 0) //map view
+            {
+                //activate the MapControl and deactivate the PageLayoutControl
+                m_controlsSynchronizer.ActivateMap();
+            }
+            else //layout view
+            {
+                //activate the PageLayoutControl and deactivate the MapControl
+                m_controlsSynchronizer.ActivatePageLayout();
+            }
+        }
+
+        #endregion
+
+
     }
 }
