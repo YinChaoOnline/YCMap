@@ -23,18 +23,17 @@ namespace YCMap.Commands
 
         public OpenNewMapDocument(ControlsSynchronizer controlsSynchronizer)
         {
-            base.m_category = ".NET Samples";
-            base.m_caption = "Open Map Document";
-            base.m_message = "Open Map Document";
-            base.m_toolTip = "Open Map Document";
-            base.m_name = "DotNetSamplesOpenMapDocument";
+            base.m_category = "MapDocument";
+            base.m_caption = "打开地图文档";
+            base.m_message = "打开地图文档";
+            base.m_toolTip = "打开地图文档";
+            base.m_name = "OpenNewMapDocument";
 
             m_controlsSynchronizer = controlsSynchronizer;
 
             try
             {
-                string bitmapResourceName = GetType().Name + ".bmp";
-                base.m_bitmap = new Bitmap(GetType(), bitmapResourceName);
+                base.m_bitmap = YCMap.Properties.Resources.GenericOpen32;
             }
             catch (Exception ex)
             {
