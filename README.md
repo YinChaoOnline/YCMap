@@ -7,6 +7,12 @@ a teaching map demo using ArcGIS Engine and C#
 ![书签菜单](media/bookmark-menu-create.png)
 ![书签菜单](media/bookmark-menu-management.png)
 
+##开发环境
+1. 实验环境；安装好ArcGIS Engine10.2, IDE使用Visual studio 2012；
+2. 低版本AE需要重新引用AE的reference，更改框架等步骤；低版本IDE需要更改.sln文件，更改成VS2010或其他能打开；
+
+
+
 ##已实现的功能
 1. 文件菜单，新建、打开、保存、另存为地图文档、添加数据、退出功能
 2. 书签加载、书签添加功能、书签管理功能
