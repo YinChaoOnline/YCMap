@@ -90,7 +90,7 @@
             this.menuWindow});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(886, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(646, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -211,7 +211,7 @@
             // menuItemOverview
             // 
             this.menuItemOverview.Name = "menuItemOverview";
-            this.menuItemOverview.Size = new System.Drawing.Size(118, 22);
+            this.menuItemOverview.Size = new System.Drawing.Size(152, 22);
             this.menuItemOverview.Text = "总览(&O)";
             this.menuItemOverview.Click += new System.EventHandler(this.menuItemOverview_Click);
             // 
@@ -221,7 +221,7 @@
             this.axToolbarControl1.Location = new System.Drawing.Point(0, 25);
             this.axToolbarControl1.Name = "axToolbarControl1";
             this.axToolbarControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axToolbarControl1.OcxState")));
-            this.axToolbarControl1.Size = new System.Drawing.Size(886, 28);
+            this.axToolbarControl1.Size = new System.Drawing.Size(646, 28);
             this.axToolbarControl1.TabIndex = 1;
             this.axToolbarControl1.OnMouseMove += new ESRI.ArcGIS.Controls.IToolbarControlEvents_Ax_OnMouseMoveEventHandler(this.axToolbarControl1_OnMouseMove);
             // 
@@ -240,7 +240,7 @@
             this.axMapControl1.Location = new System.Drawing.Point(3, 3);
             this.axMapControl1.Name = "axMapControl1";
             this.axMapControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMapControl1.OcxState")));
-            this.axMapControl1.Size = new System.Drawing.Size(655, 327);
+            this.axMapControl1.Size = new System.Drawing.Size(473, 296);
             this.axMapControl1.TabIndex = 5;
             this.axMapControl1.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.axMapControl1_OnMouseDown);
             this.axMapControl1.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.axMapControl1_OnMouseMove);
@@ -253,7 +253,7 @@
             this.axTOCControl1.Location = new System.Drawing.Point(3, 3);
             this.axTOCControl1.Name = "axTOCControl1";
             this.axTOCControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axTOCControl1.OcxState")));
-            this.axTOCControl1.Size = new System.Drawing.Size(199, 327);
+            this.axTOCControl1.Size = new System.Drawing.Size(141, 296);
             this.axTOCControl1.TabIndex = 6;
             this.axTOCControl1.OnMouseDown += new ESRI.ArcGIS.Controls.ITOCControlEvents_Ax_OnMouseDownEventHandler(this.axTOCControl1_OnMouseDown);
             // 
@@ -274,8 +274,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControlMapAndPageLayout);
-            this.splitContainer1.Size = new System.Drawing.Size(886, 359);
-            this.splitContainer1.SplitterDistance = 213;
+            this.splitContainer1.Size = new System.Drawing.Size(646, 328);
+            this.splitContainer1.SplitterDistance = 155;
             this.splitContainer1.TabIndex = 7;
             // 
             // tabControlLayerAndProperty
@@ -286,7 +286,7 @@
             this.tabControlLayerAndProperty.Location = new System.Drawing.Point(0, 0);
             this.tabControlLayerAndProperty.Name = "tabControlLayerAndProperty";
             this.tabControlLayerAndProperty.SelectedIndex = 0;
-            this.tabControlLayerAndProperty.Size = new System.Drawing.Size(213, 359);
+            this.tabControlLayerAndProperty.Size = new System.Drawing.Size(155, 328);
             this.tabControlLayerAndProperty.TabIndex = 0;
             // 
             // tabPageLayers
@@ -295,7 +295,7 @@
             this.tabPageLayers.Location = new System.Drawing.Point(4, 22);
             this.tabPageLayers.Name = "tabPageLayers";
             this.tabPageLayers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLayers.Size = new System.Drawing.Size(205, 333);
+            this.tabPageLayers.Size = new System.Drawing.Size(147, 302);
             this.tabPageLayers.TabIndex = 0;
             this.tabPageLayers.Text = "图层";
             this.tabPageLayers.ToolTipText = "图层";
@@ -329,7 +329,7 @@
             this.tabControlMapAndPageLayout.Location = new System.Drawing.Point(0, 0);
             this.tabControlMapAndPageLayout.Name = "tabControlMapAndPageLayout";
             this.tabControlMapAndPageLayout.SelectedIndex = 0;
-            this.tabControlMapAndPageLayout.Size = new System.Drawing.Size(669, 359);
+            this.tabControlMapAndPageLayout.Size = new System.Drawing.Size(487, 328);
             this.tabControlMapAndPageLayout.TabIndex = 0;
             this.tabControlMapAndPageLayout.SelectedIndexChanged += new System.EventHandler(this.tabControlMapAndPageLayout_SelectedIndexChanged);
             // 
@@ -339,7 +339,7 @@
             this.tabPageMap.Location = new System.Drawing.Point(4, 22);
             this.tabPageMap.Name = "tabPageMap";
             this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMap.Size = new System.Drawing.Size(661, 333);
+            this.tabPageMap.Size = new System.Drawing.Size(479, 302);
             this.tabPageMap.TabIndex = 0;
             this.tabPageMap.Text = "地图";
             this.tabPageMap.ToolTipText = "地图";
@@ -373,9 +373,9 @@
             this.toolStripStatusBlank,
             this.toolStripStatusScale,
             this.toolStripStatusCoordinates});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 412);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(886, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(646, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -388,7 +388,7 @@
             // toolStripStatusBlank
             // 
             this.toolStripStatusBlank.Name = "toolStripStatusBlank";
-            this.toolStripStatusBlank.Size = new System.Drawing.Size(715, 17);
+            this.toolStripStatusBlank.Size = new System.Drawing.Size(475, 17);
             this.toolStripStatusBlank.Spring = true;
             // 
             // toolStripStatusScale
@@ -407,7 +407,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 434);
+            this.ClientSize = new System.Drawing.Size(646, 403);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.axLicenseControl1);

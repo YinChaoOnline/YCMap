@@ -14,6 +14,7 @@ using YCMap.Commands;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Display;
 using YCMap.Utils;
+using YCMap.Tools;
 
 namespace YCMap
 {
@@ -73,6 +74,16 @@ namespace YCMap
             m_menuLayer.AddItem(new ZoomToLayer(), -1, 1, true, esriCommandStyles.esriCommandStyleTextOnly);
             //设置菜单的 Hook
             m_menuLayer.SetHook(m_mapControl);
+
+            try
+            {
+                axToolbarControl1.AddItem(new PanTool());
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
 
         #region 文件菜单
